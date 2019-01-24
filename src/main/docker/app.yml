@@ -7,14 +7,9 @@ services:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - SPRING_DATASOURCE_URL=jdbc:mariadb://twentyonepoints-mariadb:3306/twentyonepoints
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
-            - SPRING_DATA_JEST_URI=http://twentyonepoints-elasticsearch:9200
         ports:
             - 8080:8080
     twentyonepoints-mariadb:
         extends:
             file: mariadb.yml
             service: twentyonepoints-mariadb
-    twentyonepoints-elasticsearch:
-        extends:
-            file: elasticsearch.yml
-            service: twentyonepoints-elasticsearch

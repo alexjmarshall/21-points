@@ -37,7 +37,7 @@ spring:
             indent-output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:h2:mem:twentyonepoints;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+        url: jdbc:h2:file:./build/h2db/db/twentyonepoints;DB_CLOSE_DELAY=-1
         username: TwentyOnePoints
         password:
         hikari:
@@ -56,11 +56,6 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.BeanClassLoaderAwareJCacheRegionFactory
-    data:
-        elasticsearch:
-            properties:
-                path:
-                    home: build/elasticsearch
     liquibase:
         contexts: dev
     mail:
@@ -101,7 +96,7 @@ jhipster:
         authentication:
             jwt:
                 # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-                base64-secret: NDBhODA0MjAxZWI3ZmQ4OTU4MjI2OGYzZGFkNmY3ZGMxMjA1YTlhYjg5YWMyOGQ3N2FiNzQ5ZTU2OTUxZDM0M2Y2ODVmOTgyYTE0ZWEyMDEwMGY3ZDI1Y2Q2ZTk2NTJhMjA1YjI5OGI0ODc4MmIyMDBhYjk3NDQzNTAyZjEzMDI=
+                base64-secret: ZGY4MWVhZjIwOTViZDBkMmE0ZDdkMjNmMjE2MGUzZTE5ZTJkZDA5ODU4MjcxYTk2YzM2N2JjMDEzZDQxNjk5NTBjYjc4Y2NlMGZjYTkzYWUxZGM5NTAyNzc4YjliZjZmZTg4NGFjNTg3Zjk3NWRjNGY5MDEzYjNmM2I2YjA2ZmE=
                 # Token is valid 24 hours
                 token-validity-in-seconds: 86400
                 token-validity-in-seconds-for-remember-me: 2592000

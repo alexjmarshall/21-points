@@ -2,7 +2,7 @@
     "generator-jhipster": {
         "promptValues": {
             "packageName": "org.jhipster.health",
-            "nativeLanguage": "fr"
+            "nativeLanguage": "en"
         },
         "jhipsterVersion": "5.7.2",
         "applicationType": "monolith",
@@ -15,14 +15,14 @@
         "enableHibernateCache": true,
         "websocket": false,
         "databaseType": "sql",
-        "devDatabaseType": "h2Memory",
+        "devDatabaseType": "h2Disk",
         "prodDatabaseType": "mariadb",
-        "searchEngine": "elasticsearch",
+        "searchEngine": false,
         "messageBroker": false,
         "serviceDiscoveryType": false,
         "buildTool": "gradle",
         "enableSwaggerCodegen": false,
-        "jwtSecretKey": "NDBhODA0MjAxZWI3ZmQ4OTU4MjI2OGYzZGFkNmY3ZGMxMjA1YTlhYjg5YWMyOGQ3N2FiNzQ5ZTU2OTUxZDM0M2Y2ODVmOTgyYTE0ZWEyMDEwMGY3ZDI1Y2Q2ZTk2NTJhMjA1YjI5OGI0ODc4MmIyMDBhYjk3NDQzNTAyZjEzMDI=",
+        "jwtSecretKey": "ZGY4MWVhZjIwOTViZDBkMmE0ZDdkMjNmMjE2MGUzZTE5ZTJkZDA5ODU4MjcxYTk2YzM2N2JjMDEzZDQxNjk5NTBjYjc4Y2NlMGZjYTkzYWUxZGM5NTAyNzc4YjliZjZmZTg4NGFjNTg3Zjk3NWRjNGY5MDEzYjNmM2I2YjA2ZmE=",
         "clientFramework": "angularX",
         "useSass": true,
         "clientPackageManager": "npm",
@@ -30,7 +30,7 @@
         "jhiPrefix": "jhi",
         "otherModules": [],
         "enableTranslation": true,
-        "nativeLanguage": "fr",
-        "languages": ["fr"]
+        "nativeLanguage": "en",
+        "languages": ["en", "fr"]
     }
 }
