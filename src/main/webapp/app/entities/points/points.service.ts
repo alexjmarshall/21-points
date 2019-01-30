@@ -18,6 +18,13 @@ export class PointsService {
 
     constructor(protected http: HttpClient) {}
 
+    thisWeek(): Observable<EntityResponseType> {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        return this.http
+            .get(`api/points-this-week?tz=${tz}`, { observe: 'response' })
+            .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    }
+
     create(points: IPoints): Observable<EntityResponseType> {
         const copy = this.convertDateFromClient(points);
         return this.http
