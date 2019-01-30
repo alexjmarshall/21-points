@@ -28,9 +28,12 @@
             <tr *ngFor="let points of points ;trackBy: trackId">
                 <td><a [routerLink]="['/points', points.id, 'view' ]">{{points.id}}</a></td>
                 <td>{{points.date | date:'mediumDate'}}</td>
-                <td>{{points.exercise}}</td>
-                <td>{{points.meals}}</td>
-                <td>{{points.alcohol}}</td>
+                <td class="text-center"><fa-icon [icon]="points.exercise ? 'check' : 'times'" aria-hidden="true"
+                    class="{{points.exercise ? 'text-success' : 'text-danger'}}"></fa-icon></td>
+                <td class="text-center"><fa-icon [icon]="points.meals ? 'check' : 'times'" aria-hidden="true"
+                    class="{{points.meals ? 'text-success' : 'text-danger'}}"></fa-icon></td>
+                <td class="text-center"><fa-icon [icon]="points.alcohol ? 'check' : 'times'" aria-hidden="true"
+                    class="{{points.alcohol ? 'text-success' : 'text-danger'}}"></fa-icon></td>
                 <td>{{points.notes}}</td>
                 <td>
                     {{points.user?.login}}

@@ -108,7 +108,7 @@ public class PointsResource {
         Page<Points> page;
         
         if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
-            page = pointsRepository.findAll(pageable);
+            page = pointsRepository.findAllByOrderByDateDesc(pageable);
         } else {
             page = pointsRepository.findByUserIsCurrentUser(pageable);
         }
