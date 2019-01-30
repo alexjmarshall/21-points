@@ -1,0 +1,24 @@
+{
+    "twentyOnePointsApp": {
+        "blood": {
+            "home": {
+                "title": "Blood",
+                "createLabel": "Create a new Blood",
+                "createOrEditLabel": "Create or edit a Blood"
+            },
+            "created": "A new Blood is created with identifier {{ param }}",
+            "updated": "A Blood is updated with identifier {{ param }}",
+            "deleted": "A Blood is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Blood {{ id }}?"
+            },
+            "detail": {
+                "title": "Blood"
+            },
+            "timestamp": "Timestamp",
+            "systolic": "Systolic",
+            "diastolic": "Diastolic",
+            "user": "User"
+        }
+    }
+}
