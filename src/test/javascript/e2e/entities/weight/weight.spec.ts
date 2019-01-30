@@ -39,11 +39,11 @@ describe('Weight e2e test', () => {
 
         await weightComponentsPage.clickOnCreateButton();
         await promise.all([
-            weightUpdatePage.setTimestampInput('2000-12-31'),
+            weightUpdatePage.setDateInput('2000-12-31'),
             weightUpdatePage.setWeightInput('5'),
             weightUpdatePage.userSelectLastOption()
         ]);
-        expect(await weightUpdatePage.getTimestampInput()).to.eq('2000-12-31');
+        expect(await weightUpdatePage.getDateInput()).to.eq('2000-12-31');
         expect(await weightUpdatePage.getWeightInput()).to.eq('5');
         await weightUpdatePage.save();
         expect(await weightUpdatePage.getSaveButton().isPresent()).to.be.false;

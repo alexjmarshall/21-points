@@ -32,7 +32,7 @@ describe('Service Tests', () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        timestamp: currentDate.format(DATE_FORMAT)
+                        date: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
@@ -49,13 +49,13 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        timestamp: currentDate.format(DATE_FORMAT)
+                        date: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        timestamp: currentDate
+                        date: currentDate
                     },
                     returnedFromService
                 );
@@ -70,7 +70,7 @@ describe('Service Tests', () => {
             it('should update a Blood', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        timestamp: currentDate.format(DATE_FORMAT),
+                        date: currentDate.format(DATE_FORMAT),
                         systolic: 1,
                         diastolic: 1
                     },
@@ -79,7 +79,7 @@ describe('Service Tests', () => {
 
                 const expected = Object.assign(
                     {
-                        timestamp: currentDate
+                        date: currentDate
                     },
                     returnedFromService
                 );
@@ -94,7 +94,7 @@ describe('Service Tests', () => {
             it('should return a list of Blood', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        timestamp: currentDate.format(DATE_FORMAT),
+                        date: currentDate.format(DATE_FORMAT),
                         systolic: 1,
                         diastolic: 1
                     },
@@ -102,7 +102,7 @@ describe('Service Tests', () => {
                 );
                 const expected = Object.assign(
                     {
-                        timestamp: currentDate
+                        date: currentDate
                     },
                     returnedFromService
                 );

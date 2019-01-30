@@ -39,12 +39,12 @@ describe('Blood e2e test', () => {
 
         await bloodComponentsPage.clickOnCreateButton();
         await promise.all([
-            bloodUpdatePage.setTimestampInput('2000-12-31'),
+            bloodUpdatePage.setDateInput('2000-12-31'),
             bloodUpdatePage.setSystolicInput('5'),
             bloodUpdatePage.setDiastolicInput('5'),
             bloodUpdatePage.userSelectLastOption()
         ]);
-        expect(await bloodUpdatePage.getTimestampInput()).to.eq('2000-12-31');
+        expect(await bloodUpdatePage.getDateInput()).to.eq('2000-12-31');
         expect(await bloodUpdatePage.getSystolicInput()).to.eq('5');
         expect(await bloodUpdatePage.getDiastolicInput()).to.eq('5');
         await bloodUpdatePage.save();

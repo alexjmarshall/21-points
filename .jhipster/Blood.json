@@ -13,7 +13,7 @@
     ],
     "fields": [
         {
-            "fieldName": "timestamp",
+            "fieldName": "date",
             "fieldType": "LocalDate",
             "fieldValidateRules": [
                 "required"

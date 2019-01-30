@@ -13,8 +13,11 @@
     ],
     "fields": [
         {
-            "fieldName": "timestamp",
-            "fieldType": "LocalDate"
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "weight",

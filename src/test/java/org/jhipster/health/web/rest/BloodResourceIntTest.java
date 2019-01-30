@@ -42,8 +42,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = TwentyOnePointsApp.class)
 public class BloodResourceIntTest {
 
-    private static final LocalDate DEFAULT_TIMESTAMP = LocalDate.ofEpochDay(0L);
-    private static final LocalDate UPDATED_TIMESTAMP = LocalDate.now(ZoneId.systemDefault());
+    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
 
     private static final Integer DEFAULT_SYSTOLIC = 1;
     private static final Integer UPDATED_SYSTOLIC = 2;
@@ -93,7 +93,7 @@ public class BloodResourceIntTest {
      */
     public static Blood createEntity(EntityManager em) {
         Blood blood = new Blood()
-            .timestamp(DEFAULT_TIMESTAMP)
+            .date(DEFAULT_DATE)
             .systolic(DEFAULT_SYSTOLIC)
             .diastolic(DEFAULT_DIASTOLIC);
         return blood;
@@ -119,7 +119,7 @@ public class BloodResourceIntTest {
         List<Blood> bloodList = bloodRepository.findAll();
         assertThat(bloodList).hasSize(databaseSizeBeforeCreate + 1);
         Blood testBlood = bloodList.get(bloodList.size() - 1);
-        assertThat(testBlood.getTimestamp()).isEqualTo(DEFAULT_TIMESTAMP);
+        assertThat(testBlood.getDate()).isEqualTo(DEFAULT_DATE);
         assertThat(testBlood.getSystolic()).isEqualTo(DEFAULT_SYSTOLIC);
         assertThat(testBlood.getDiastolic()).isEqualTo(DEFAULT_DIASTOLIC);
     }
@@ -145,10 +145,10 @@ public class BloodResourceIntTest {
 
     @Test
     @Transactional
-    public void checkTimestampIsRequired() throws Exception {
+    public void checkDateIsRequired() throws Exception {
         int databaseSizeBeforeTest = bloodRepository.findAll().size();
         // set the field null
-        blood.setTimestamp(null);
+        blood.setDate(null);
 
         // Create the Blood, which fails.
 
@@ -172,7 +172,7 @@ public class BloodResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(blood.getId().intValue())))
-            .andExpect(jsonPath("$.[*].timestamp").value(hasItem(DEFAULT_TIMESTAMP.toString())))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
             .andExpect(jsonPath("$.[*].systolic").value(hasItem(DEFAULT_SYSTOLIC)))
             .andExpect(jsonPath("$.[*].diastolic").value(hasItem(DEFAULT_DIASTOLIC)));
     }
@@ -188,7 +188,7 @@ public class BloodResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(blood.getId().intValue()))
-            .andExpect(jsonPath("$.timestamp").value(DEFAULT_TIMESTAMP.toString()))
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.systolic").value(DEFAULT_SYSTOLIC))
             .andExpect(jsonPath("$.diastolic").value(DEFAULT_DIASTOLIC));
     }
@@ -214,7 +214,7 @@ public class BloodResourceIntTest {
         // Disconnect from session so that the updates on updatedBlood are not directly saved in db
         em.detach(updatedBlood);
         updatedBlood
-            .timestamp(UPDATED_TIMESTAMP)
+            .date(UPDATED_DATE)
             .systolic(UPDATED_SYSTOLIC)
             .diastolic(UPDATED_DIASTOLIC);
 
@@ -227,7 +227,7 @@ public class BloodResourceIntTest {
         List<Blood> bloodList = bloodRepository.findAll();
         assertThat(bloodList).hasSize(databaseSizeBeforeUpdate);
         Blood testBlood = bloodList.get(bloodList.size() - 1);
-        assertThat(testBlood.getTimestamp()).isEqualTo(UPDATED_TIMESTAMP);
+        assertThat(testBlood.getDate()).isEqualTo(UPDATED_DATE);
         assertThat(testBlood.getSystolic()).isEqualTo(UPDATED_SYSTOLIC);
         assertThat(testBlood.getDiastolic()).isEqualTo(UPDATED_DIASTOLIC);
     }

@@ -5,6 +5,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -24,8 +25,9 @@ public class Weight implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "jhi_timestamp")
-    private LocalDate timestamp;
+    @NotNull
+    @Column(name = "jhi_date", nullable = false)
+    private LocalDate date;
 
     @Column(name = "weight")
     private Integer weight;
@@ -43,17 +45,17 @@ public class Weight implements Serializable {
         this.id = id;
     }
 
-    public LocalDate getTimestamp() {
-        return timestamp;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public Weight timestamp(LocalDate timestamp) {
-        this.timestamp = timestamp;
+    public Weight date(LocalDate date) {
+        this.date = date;
         return this;
     }
 
-    public void setTimestamp(LocalDate timestamp) {
-        this.timestamp = timestamp;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public Integer getWeight() {
@@ -107,7 +109,7 @@ public class Weight implements Serializable {
     public String toString() {
         return "Weight{" +
             "id=" + getId() +
-            ", timestamp='" + getTimestamp() + "'" +
+            ", date='" + getDate() + "'" +
             ", weight=" + getWeight() +
             "}";
     }

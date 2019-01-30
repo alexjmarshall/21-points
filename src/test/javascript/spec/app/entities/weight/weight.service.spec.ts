@@ -32,7 +32,7 @@ describe('Service Tests', () => {
             it('should find an element', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        timestamp: currentDate.format(DATE_FORMAT)
+                        date: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
@@ -49,13 +49,13 @@ describe('Service Tests', () => {
                 const returnedFromService = Object.assign(
                     {
                         id: 0,
-                        timestamp: currentDate.format(DATE_FORMAT)
+                        date: currentDate.format(DATE_FORMAT)
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        timestamp: currentDate
+                        date: currentDate
                     },
                     returnedFromService
                 );
@@ -70,7 +70,7 @@ describe('Service Tests', () => {
             it('should update a Weight', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        timestamp: currentDate.format(DATE_FORMAT),
+                        date: currentDate.format(DATE_FORMAT),
                         weight: 1
                     },
                     elemDefault
@@ -78,7 +78,7 @@ describe('Service Tests', () => {
 
                 const expected = Object.assign(
                     {
-                        timestamp: currentDate
+                        date: currentDate
                     },
                     returnedFromService
                 );
@@ -93,14 +93,14 @@ describe('Service Tests', () => {
             it('should return a list of Weight', async () => {
                 const returnedFromService = Object.assign(
                     {
-                        timestamp: currentDate.format(DATE_FORMAT),
+                        date: currentDate.format(DATE_FORMAT),
                         weight: 1
                     },
                     elemDefault
                 );
                 const expected = Object.assign(
                     {
-                        timestamp: currentDate
+                        date: currentDate
                     },
                     returnedFromService
                 );

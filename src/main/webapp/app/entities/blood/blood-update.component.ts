@@ -18,7 +18,7 @@ export class BloodUpdateComponent implements OnInit {
     isSaving: boolean;
 
     users: IUser[];
-    timestampDp: any;
+    dateDp: any;
 
     constructor(
         protected jhiAlertService: JhiAlertService,

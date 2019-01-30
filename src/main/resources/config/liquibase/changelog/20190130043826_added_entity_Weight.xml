@@ -22,8 +22,8 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="jhi_timestamp" type="date">
-                <constraints nullable="true" />
+            <column name="jhi_date" type="date">
+                <constraints nullable="false" />
             </column>
 
             <column name="weight" type="integer">

@@ -26,7 +26,7 @@ export class BloodUpdatePage {
     pageTitle = element(by.id('jhi-blood-heading'));
     saveButton = element(by.id('save-entity'));
     cancelButton = element(by.id('cancel-save'));
-    timestampInput = element(by.id('field_timestamp'));
+    dateInput = element(by.id('field_date'));
     systolicInput = element(by.id('field_systolic'));
     diastolicInput = element(by.id('field_diastolic'));
     userSelect = element(by.id('field_user'));
@@ -35,12 +35,12 @@ export class BloodUpdatePage {
         return this.pageTitle.getAttribute('jhiTranslate');
     }
 
-    async setTimestampInput(timestamp) {
-        await this.timestampInput.sendKeys(timestamp);
+    async setDateInput(date) {
+        await this.dateInput.sendKeys(date);
     }
 
-    async getTimestampInput() {
-        return this.timestampInput.getAttribute('value');
+    async getDateInput() {
+        return this.dateInput.getAttribute('value');
     }
 
     async setSystolicInput(systolic) {

@@ -51,14 +51,14 @@ export class BloodService {
 
     protected convertDateFromClient(blood: IBlood): IBlood {
         const copy: IBlood = Object.assign({}, blood, {
-            timestamp: blood.timestamp != null && blood.timestamp.isValid() ? blood.timestamp.format(DATE_FORMAT) : null
+            date: blood.date != null && blood.date.isValid() ? blood.date.format(DATE_FORMAT) : null
         });
         return copy;
     }
 
     protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
         if (res.body) {
-            res.body.timestamp = res.body.timestamp != null ? moment(res.body.timestamp) : null;
+            res.body.date = res.body.date != null ? moment(res.body.date) : null;
         }
         return res;
     }
@@ -66,7 +66,7 @@ export class BloodService {
     protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
         if (res.body) {
             res.body.forEach((blood: IBlood) => {
-                blood.timestamp = blood.timestamp != null ? moment(blood.timestamp) : null;
+                blood.date = blood.date != null ? moment(blood.date) : null;
             });
         }
         return res;

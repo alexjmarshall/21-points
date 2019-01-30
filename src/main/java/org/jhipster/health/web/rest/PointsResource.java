@@ -23,6 +23,10 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
+import org.jhipster.health.repository.UserRepository;
+import org.jhipster.health.security.AuthoritiesConstants;
+import org.jhipster.health.security.SecurityUtils;
+
 /**
  * REST controller for managing Points.
  */
@@ -36,8 +40,13 @@ public class PointsResource {
 
     private final PointsRepository pointsRepository;
 
-    public PointsResource(PointsRepository pointsRepository) {
+    private final UserRepository userRepository;
+
+    //private final PointsSearchRepository pointsSearchRepository;
+
+    public PointsResource(PointsRepository pointsRepository, UserRepository userRepository) {
         this.pointsRepository = pointsRepository;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -53,6 +62,10 @@ public class PointsResource {
         log.debug("REST request to save Points : {}", points);
         if (points.getId() != null) {
             throw new BadRequestAlertException("A new points cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        if (!SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            log.debug("No user passed in, using current user: {}", SecurityUtils.getCurrentUserLogin());
+            points.setUser(userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin().get()).get());
         }
         Points result = pointsRepository.save(points);
         return ResponseEntity.created(new URI("/api/points/" + result.getId()))
@@ -92,7 +105,14 @@ public class PointsResource {
     @Timed
     public ResponseEntity<List<Points>> getAllPoints(Pageable pageable) {
         log.debug("REST request to get a page of Points");
-        Page<Points> page = pointsRepository.findAll(pageable);
+        Page<Points> page;
+        
+        if(SecurityUtils.isCurrentUserInRole(AuthoritiesConstants.ADMIN)){
+            page = pointsRepository.findAll(pageable);
+        } else {
+            page = pointsRepository.findByUserIsCurrentUser(pageable);
+        }
+
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/points");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

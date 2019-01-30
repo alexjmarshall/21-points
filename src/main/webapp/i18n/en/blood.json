@@ -15,7 +15,7 @@
             "detail": {
                 "title": "Blood"
             },
-            "timestamp": "Timestamp",
+            "date": "Date",
             "systolic": "Systolic",
             "diastolic": "Diastolic",
             "user": "User"
