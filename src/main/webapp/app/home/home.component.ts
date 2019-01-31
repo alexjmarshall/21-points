@@ -23,22 +23,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     eventSubscriber: Subscription;
     pointsThisWeek: any = {};
     pointsPercentage: number;
+    preferences: Preferences;
 
     constructor(
         private accountService: AccountService,
         private loginModalService: LoginModalService,
         private eventManager: JhiEventManager,
+        private preferencesService: PreferencesService,
         private pointsService: PointsService
     ) {}
-
-    getUserData() {
-        // Get points for the current week
-        this.pointsService.thisWeek().subscribe((points: any) => {
-            points = points.body;
-            this.pointsThisWeek = points;
-            this.pointsPercentage = (points.points / 21) * 100;
-        });
-    }
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
@@ -61,6 +54,30 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.eventSubscriber = this.eventManager.subscribe('pointsListModification', () => this.getUserData());
         this.eventSubscriber = this.eventManager.subscribe('bloodListModification', () => this.getUserData());
         this.eventSubscriber = this.eventManager.subscribe('weightListModification', () => this.getUserData());
+        this.eventSubscriber = this.eventManager.subscribe('preferencesListModification', () => this.getUserData());
+    }
+
+    getUserData() {
+        // Get preferences
+        this.preferencesService.user().subscribe((preferences: any) => {
+            this.preferences = preferences.body;
+
+            // Get points for the current week
+            this.pointsService.thisWeek().subscribe((points: any) => {
+                points = points.body;
+                this.pointsThisWeek = points;
+                this.pointsPercentage = (points.points / this.preferences.weeklyGoal) * 100;
+
+                // calculate success, warning, or danger
+                if (points.points >= preferences.weeklyGoal) {
+                    this.pointsThisWeek.progress = 'success';
+                } else if (points.points < 10) {
+                    this.pointsThisWeek.progress = 'danger';
+                } else if (points.points > 10 && points.points < this.preferences.weeklyGoal) {
+                    this.pointsThisWeek.progress = 'warning';
+                }
+            });
+        });
     }
 
     isAuthenticated() {

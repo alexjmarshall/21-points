@@ -39,9 +39,10 @@
                     <div class="row">
                         <div class="col-md-11">
                             <ngb-progressbar max="21" [value]="pointsThisWeek.points"
+                                            [type]="pointsThisWeek.progress"
                                             [hidden]="!pointsThisWeek.points" [striped]="true">
                                 <span *ngIf="pointsThisWeek.points">
-                                    {{pointsThisWeek.points}} / Goal: 10
+                                    {{pointsThisWeek.points}} / Goal: {{preferences.weeklyGoal}}
                                 </span>
                             </ngb-progressbar>
                             <ngb-alert [hidden]="pointsThisWeek.points">
@@ -49,6 +50,8 @@
                                     No points yet this week, better get moving!
                                 </span>
                             </ngb-alert>
+                            <a [routerLink]="['/preferences', preferences.id, 'edit']"
+                                class="float-right">Edit Preferences</a>
                         </div>
                     </div>
 
